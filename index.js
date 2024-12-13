@@ -43,8 +43,9 @@ app.get('/blogs/user/:userId', async (req, res) => {
 // Create a new blog
 app.post('/blogs', async (req, res) => {
     const { UserId, Title, Content } = req.body;
-    const BlogId = require('crypto').randomBytes(16).toString('hex');
-    const Created = new Date().toISOString();
+    let date = new Date();
+    const BlogId = date.getTime();
+    const Created = date.toDateString();
 
     const params = {
         TableName: TABLE_NAME,

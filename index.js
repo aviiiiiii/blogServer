@@ -24,8 +24,8 @@ app.get('/blogs', async (req, res) => {
 });
 
 // Get personal blogs
-app.get('/blogs/user/:UserId', async (req, res) => {
-    const userId = req.params.userId;
+app.get('/blogs/user/:userId', async (req, res) => {
+    const UserId = req.params.userId;
     const params = {
         TableName: TABLE_NAME,
         KeyConditionExpression: 'UserId = :UserId',

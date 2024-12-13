@@ -61,24 +61,22 @@ app.post('/blogs', async (req, res) => {
 });
 
 // Delete a blog
-app.post('/blogs/:blogId', async (req, res) => {
+app.delete('/blogs/:userId/:blogId', async (req, res) => {
     const BlogId = req.params.blogId;
+    const UserId = req.params.userId;
     
 
     const params = {
         TableName: TABLE_NAME,
-        Key: {BlogId: BlogId}
+        Key: {
+            UserId: UserId,
+            BlogId: BlogId,
+        },
     };
     try {
         const data = await dynamoDb.delete(params).promise();
-
-        // Check if an item was deleted (DynamoDB's delete does not error if the item doesn't exist)
-        if (!data.Attributes) {
-            res.status(404).json({ error: 'Blog not found' });
-            return;
-        }
-
         res.status(200).json({ message: 'Blog deleted successfully' });
+
     } catch (error) {
         console.error('Error deleting blog:', error);
         res.status(500).json({ error: 'Failed to delete blog' });

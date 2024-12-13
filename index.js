@@ -24,13 +24,12 @@ app.get('/blogs', async (req, res) => {
 });
 
 // Get personal blogs
-app.get('/blogs/user/:userId', async (req, res) => {
+app.get('/blogs/user/:UserId', async (req, res) => {
     const userId = req.params.userId;
     const params = {
         TableName: TABLE_NAME,
-        IndexName: 'userId-index',
-        KeyConditionExpression: 'userId = :userId',
-        ExpressionAttributeValues: { ':userId': userId },
+        KeyConditionExpression: 'UserId = :UserId',
+        ExpressionAttributeValues: { ':UserId': UserId },
     };
 
     try {

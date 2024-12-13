@@ -44,7 +44,7 @@ app.get('/blogs/user/:userId', async (req, res) => {
 app.post('/blogs', async (req, res) => {
     const { UserId, Title, Content } = req.body;
     let date = new Date();
-    const BlogId = date.getTime();
+    const BlogId = date.getTime().toSting();
     const Created = date.toDateString();
 
     const params = {

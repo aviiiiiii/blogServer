@@ -42,7 +42,7 @@ app.get('/blogs/user/:userId', async (req, res) => {
 
 // Create a new blog
 app.post('/blogs', async (req, res) => {
-    const { UserId, Title, content } = req.body;
+    const { UserId, Title, Content } = req.body;
     const BlogId = require('crypto').randomBytes(16).toString('hex');
     const Created = new Date().toISOString();
 
